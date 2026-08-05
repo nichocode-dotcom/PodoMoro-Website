@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+
+  --color-primary: #CA8100;
+  --color-primary-hover: #A16700;
+  --color-secondary: #F59E0B;
+  --color-bg-light: #F8FAFC;
+  --color-surface: #ffffff;
+  --color-text-main: #1E293B;
+  --color-text-muted: #64748B;
+  --color-border: #e2e8f0;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+  
+  /* Mencegah horizontal scroll yang sering tidak sengaja muncul */
+  overflow-x: hidden;
+  
+  /* Menyembunyikan scrollbar di Firefox, IE dan Edge */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Menyembunyikan scrollbar di Chrome, Safari dan Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-scroll-left {
+  animation: scrollLeft 35s linear infinite;
+}
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}

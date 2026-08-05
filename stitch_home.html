@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Warmindo Barokah - Freshly Served Every Day</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary": "#5c5f61",
+                        "surface-bright": "#f8f9ff",
+                        "surface-tint": "#006c49",
+                        "on-tertiary-container": "#36393b",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "outline-variant": "#bbcabf",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-primary-container": "#00422b",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-container": "#fea619",
+                        "primary-container": "#10b981",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-container": "#e5eeff",
+                        "surface-container-highest": "#d3e4fe",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "on-background": "#0b1c30",
+                        "secondary": "#855300",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-surface-variant": "#3c4a42",
+                        "tertiary-container": "#a0a3a5",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-secondary-container": "#684000",
+                        "on-primary-fixed": "#002113",
+                        "on-primary-fixed-variant": "#005236",
+                        "inverse-primary": "#4edea3",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-container-low": "#eff4ff",
+                        "outline": "#6c7a71",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed": "#ffddb8",
+                        "on-surface": "#0b1c30",
+                        "primary": "#006c49",
+                        "inverse-surface": "#213145",
+                        "surface-container-high": "#dce9ff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .glass-panel { background: rgba(248, 249, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .shadow-ambient { box-shadow: 0 12px 24px rgba(0, 108, 73, 0.04); }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="w-full sticky top-0 z-50 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md shadow-sm">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-20">
+<a class="font-display text-headline-md font-extrabold text-primary dark:text-primary-fixed" href="#">
+                Warmindo Barokah
+            </a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 hover:scale-95 transition-transform" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Menu</a>
+<a class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">About</a>
+<a class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Gallery</a>
+<a class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full hover:bg-primary-fixed-dim transition-all shadow-ambient hidden md:block">
+                Pesan Sekarang
+            </button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" style="font-size: 28px;">menu</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+<div class="z-10 space-y-8">
+<div class="inline-flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full text-secondary font-label-md text-label-md shadow-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                    5.0 Rating • 50+ Menu Items
+                </div>
+<h1 class="font-display text-display text-on-surface tracking-tight leading-tight">
+                    Taste the <span class="text-primary">Freshness</span> Every Single Day.
+                </h1>
+<p class="font-body-lg text-body-lg text-tertiary max-w-md">
+                    Experience the finest selection of warmindo classics, crafted with premium ingredients and served in a bright, inviting atmosphere.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-primary-fixed-dim transition-all shadow-ambient flex items-center gap-2">
+                        Explore Menu
+                        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</button>
+<button class="bg-secondary/10 text-secondary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-secondary/20 transition-all">
+                        View Operating Hours
+                    </button>
+</div>
+</div>
+<div class="relative h-[400px] md:h-[600px] w-full rounded-2xl overflow-hidden shadow-ambient">
+<img class="w-full h-full object-cover rounded-[16px]" data-alt="A highly detailed, professional food photography shot of a delicious, steaming bowl of Indomie noodles. The bowl is ceramic, pristine white, resting on a light oak wooden table. Bright, natural daylight streams in from a nearby window, creating soft shadows and a fresh, airy atmosphere. The noodles are perfectly cooked, garnished with vibrant green scallions, a perfectly soft-boiled egg with a rich orange yolk, and a hint of red chili. The overall aesthetic is clean, modern minimalism, fitting for a high-end cafe menu." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADQHlfeDTiAq0qIcZTnjP3mYAyVToDr5xzFqiKAxvK-7GEmUPJOr6SmFzhAFUAjEokVs1Ka8W6P3hex5ZrTTgff0ulmkXxQjn2AQbJtChz7mdc_UELx9tfvtF6spoOAJYRuvMOd2PVhD2vI9R8xGnAWZ2X4Azv_29PnMeqOzEeLk9gXtlzz4Xylwh8M60t4poHumdq0jhpx26QpbfEmmb__iJSOkAg9C9EPqs7fKIIrSnnzpVQmV4j"/>
+<div class="absolute bottom-6 right-6 glass-panel p-4 rounded-xl flex items-center gap-4">
+<div class="bg-primary-container p-3 rounded-full flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Indomie Spesial</p>
+<p class="font-label-sm text-label-sm text-tertiary">Our Signature Dish</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Features & Stats -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 shadow-ambient border border-outline-variant/20 flex flex-col items-start gap-4">
+<div class="bg-primary/10 p-4 rounded-xl text-primary">
+<span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">ramen_dining</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">50+ Choices</h3>
+<p class="font-body-md text-body-md text-tertiary">From classic favorites to our unique signature creations, explore a vast menu designed to satisfy every craving.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 shadow-ambient border border-outline-variant/20 flex flex-col items-start gap-4">
+<div class="bg-secondary/10 p-4 rounded-xl text-secondary">
+<span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Open Daily</h3>
+<p class="font-body-md text-body-md text-tertiary">We are ready to serve you fresh meals every day from 10:00 AM to 10:00 PM. Dine in or take away.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 shadow-ambient border border-outline-variant/20 flex flex-col items-start gap-4">
+<div class="bg-primary-container/20 p-4 rounded-xl text-primary-container">
+<span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">thumb_up</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">5.0 Star Rated</h3>
+<p class="font-body-md text-body-md text-tertiary">Loved by our community for exceptional taste, clean environment, and outstanding service.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Special Menu Section -->
+<section class="bg-surface-bright py-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="max-w-2xl">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-2 block">Curated Selection</span>
+<h2 class="font-headline-lg text-headline-lg md:text-[40px] leading-tight text-on-surface">Our Special Menu</h2>
+</div>
+<button class="text-primary font-label-md text-label-md flex items-center gap-2 hover:opacity-80 transition-opacity">
+                        See Full Menu
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest rounded-[20px] overflow-hidden shadow-ambient border border-outline-variant/20 group hover:shadow-xl transition-all duration-300">
+<div class="h-48 relative overflow-hidden p-2">
+<img class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" data-alt="A bright, close-up shot of a gourmet Mie Goreng (fried noodles) dish. The noodles are glossy, mixed with fresh green vegetables, sliced chicken, and topped with a perfectly fried sunny-side-up egg with a runny yellow yolk. The dish is presented on a clean, light grey ceramic plate set against a minimalist white background. The lighting is soft and natural, emphasizing the vibrant colors and appetizing texture of the meal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB60hhmsahntiQbYRwidCG2GzW0A55fx5KQazPUiG7ZmX95RtZr--ODQEWYOO2RoljRi1cb4_5yZ-Vqus3u7H188aIhidxD88W0faMthzE4BdPaGzFxMotPGJbYoAC9BfufdL4gLz7T7DHHzHAC6AESj3umJVVXsb-QXlClzRUgh6lHJJUf_lPCj6Q_uBVXy_EJXDM-KdUUSKGNjOSwB46GP2trcuToRtmkK6ZEaXjFd6aLWCWUxcFs"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full font-label-sm text-label-sm text-primary shadow-sm">
+                                Popular
+                            </div>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Mie Goreng Spesial</h4>
+<p class="font-body-md text-body-md text-tertiary mb-4">Classic fried noodles with egg, chicken, and our secret sauce.</p>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Rp 25.000</span>
+<button class="bg-primary/10 text-primary p-2 rounded-full hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest rounded-[20px] overflow-hidden shadow-ambient border border-outline-variant/20 group hover:shadow-xl transition-all duration-300">
+<div class="h-48 relative overflow-hidden p-2">
+<img class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" data-alt="A steaming bowl of Mie Kuah (noodle soup) captured from a slight top-down angle. The broth is rich and clear, containing wavy noodles, fresh bok choy, slices of narutomaki, and a halved boiled egg. The bowl is minimalist, light beige ceramic. Soft, bright, diffused lighting creates an inviting, clean, modern cafe aesthetic. Focus is on the steam rising and the freshness of the ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9yQEj5z56LdmVVzTF197RBQyciLy3HhRfFU2c9hmmS4afhJgcZ-_3IE8YvkdjLbeakKwC9xsiFlAXpDvwlxsRZvg-v6nN0Hk1uG6QoZtsUz9WCHnbX25cM6RJHdwps9wlCmUZfRTyNy524ZbFD0ZxA3DrwFL3DMBYWmqVrFsvhn-qd7G8v50iyNUajfCeOFk7YRQshTWjJp7RLsnnaRuxirP4JZCJBsccvhKFpXCONop9RTYcs8j7"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full font-label-sm text-label-sm text-secondary shadow-sm">
+                                Spicy
+                            </div>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Mie Kuah Pedas</h4>
+<p class="font-body-md text-body-md text-tertiary mb-4">Warming noodle soup with a spicy kick and fresh vegetables.</p>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Rp 22.000</span>
+<button class="bg-primary/10 text-primary p-2 rounded-full hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-lowest rounded-[20px] overflow-hidden shadow-ambient border border-outline-variant/20 group hover:shadow-xl transition-all duration-300">
+<div class="h-48 relative overflow-hidden p-2">
+<img class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" data-alt="A refreshing glass of Es Teh Manis (sweet iced tea) in a tall, condensation-covered glass, filled with ice cubes and a slice of lemon on the rim. The drink is a deep amber color, set on a light wooden coaster. The background is a clean, bright, out-of-focus cafe interior with white walls and subtle green plant accents, conveying a fresh, cooling vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByeJumL_CNPF5Ob6eY_je4cw0i_IG6WtytE4pqYtLe_VX4ZY-veJLOh0zf8hN6C--nmgocZBn8QN1gS5xF-gQ284LGmkIFP-dhIjrGXOE0WcYihckCQ60-6bAJf40YPFaVB2-TmnLTAj6C2qsNhVexG9zlzZnQj4IkXAqE6odtFogvDHwe5U48MgZIiQJpimVWoxRuSfzYz62DyVYmDWZnVZnAKeBzfoNxJsRwlAZXqSSoJONGDTUX"/>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Es Teh Manis Jumbo</h4>
+<p class="font-body-md text-body-md text-tertiary mb-4">Refreshing large sweet iced tea, perfect for cooling down.</p>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Rp 8.000</span>
+<button class="bg-primary/10 text-primary p-2 rounded-full hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="bg-surface-container-lowest rounded-[20px] overflow-hidden shadow-ambient border border-outline-variant/20 group hover:shadow-xl transition-all duration-300">
+<div class="h-48 relative overflow-hidden p-2">
+<img class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" data-alt="A plate of golden-brown, crispy fried snacks (gorengan) such as tempeh and tofu, presented on a modern white geometric plate. Accompanied by whole green chilies. The lighting is bright and crisp, highlighting the crunchy texture of the fried batter. The setting is clean and minimalist, maintaining a high-end yet approachable food photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfcgr-pAOa0Ot-s3KX3o65cRRBUZGViaTy-xLa9ve1VaeN8LJUA8ILrr_v4KvYGe610kfRBj10qBzPY9vOoxXnnUCjcuTb8bEM5fvF5TCr3nOtUM7WvW2UUg73L2OYKZFZRroqyNMS9Ey830iZS4V9hQ9KBK-e2jKzMSDKkJWktbkrtTCOGBqfQvIpKb9a-JB91GgE0j0kCZKhN8MjX6E9Yo6npBuDndfnUwVNPenuuFN-SFVQQpK0"/>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Gorengan Campur</h4>
+<p class="font-body-md text-body-md text-tertiary mb-4">Assorted crispy fried snacks, the ultimate side dish.</p>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Rp 10.000</span>
+<button class="bg-primary/10 text-primary p-2 rounded-full hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-inverse-surface w-full border-t border-outline-variant dark:border-outline flat no shadows">
+<div class="max-w-container-max mx-auto px-margin-desktop py-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Brand -->
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
+                    Warmindo Barokah
+                </span>
+<p class="font-body-md text-body-md text-tertiary max-w-sm">
+                    Bringing you the best, freshest comfort food every day in a bright and welcoming space.
+                </p>
+</div>
+<!-- Links -->
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-label-md text-on-surface">Connect With Us</h4>
+<div class="flex flex-col gap-3">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity" href="#">Location</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity" href="#">Instagram</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity" href="#">WhatsApp</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity" href="#">Facebook</a>
+</div>
+</div>
+<!-- Hours/Contact -->
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-label-md text-on-surface">Operating Hours</h4>
+<p class="font-body-md text-body-md text-tertiary">
+                    Monday - Sunday<br/>
+                    10:00 AM - 10:00 PM
+                </p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop pb-8 pt-4 border-t border-outline-variant/30 mt-4">
+<p class="font-label-sm text-label-sm text-tertiary text-center md:text-left">
+                © 2024 Warmindo Barokah. Freshly served every day.
+            </p>
+</div>
+</footer>
+</body></html>
