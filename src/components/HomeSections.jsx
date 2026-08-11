@@ -5,6 +5,15 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
+import sectionInterior from '../assets/section_warmindo_interior.png';
+import sectionKopi from '../assets/section_kopi_susu.png';
+import sectionGorengan from '../assets/section_gorengan.png';
+
+import img1 from '../assets/menu_indomie_goreng_spesial.png';
+import img2 from '../assets/menu_indomie_goreng_telur.png';
+import img3 from '../assets/es_teh_manis.png';
+import img4 from '../assets/section_gorengan.png';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const fadeInVariant = {
@@ -19,7 +28,7 @@ const fadeInVariant = {
 export function ValueProposition() {
   const values = [
     { icon: <Wifi size={32} strokeWidth={1.5} />, text: 'Akses Wi-Fi Cepat' },
-    { icon: <Clock size={32} strokeWidth={1.5} />, text: 'Buka 24 Jam' },
+    { icon: <Clock size={32} strokeWidth={1.5} />, text: 'Buka Setiap Hari' },
     { icon: <Wallet size={32} strokeWidth={1.5} />, text: 'Harga Ramah Mahasiswa' },
     { icon: <Armchair size={32} strokeWidth={1.5} />, text: 'Ruang Nyaman untuk Nugas' }
   ];
@@ -27,7 +36,7 @@ export function ValueProposition() {
   return (
     <section className="w-full py-12 md:py-20 bg-surface border-b border-border">
       <div className="max-w-[1200px] mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {values.map((val, idx) => (
             <motion.div
               key={idx}
@@ -36,12 +45,12 @@ export function ValueProposition() {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
               variants={fadeInVariant}
-              className="flex flex-col items-center text-center group"
+              className="flex flex-col items-center text-center group bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
             >
-              <div className="w-16 h-16 rounded-full bg-bg-light flex items-center justify-center text-primary mb-4 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-amber-50 flex items-center justify-center text-primary mb-3 sm:mb-4 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm">
                 {val.icon}
               </div>
-              <h4 className="font-semibold text-text-main font-heading">{val.text}</h4>
+              <h4 className="font-semibold text-sm sm:text-base text-text-main font-heading leading-tight">{val.text}</h4>
             </motion.div>
           ))}
         </div>
@@ -54,31 +63,31 @@ export function SpecialMenu() {
   const menuItems = [
     {
       id: 1,
-      title: 'Indomie Spesial Podomoro',
-      desc: 'Racikan bumbu rahasia dengan topping telur setengah matang & kornet.',
-      price: 'Rp 18.000',
-      image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=600&auto=format&fit=crop',
+      title: 'Indomie Spesial',
+      desc: 'Mie goreng dengan topping tambahan seperti telur, sayuran, dan sosis yang bikin tambah nikmat.',
+      price: 'Rp 15.000',
+      image: img1,
     },
     {
       id: 2,
-      title: 'Nasi Gila Extra Pedas',
-      desc: 'Nasi putih hangat dengan oseng sosis, bakso, dan sambal mercon.',
-      price: 'Rp 22.000',
-      image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=600&auto=format&fit=crop',
+      title: 'Indomie Goreng',
+      desc: 'Indomie dengan berbagai varian rasa yang dimasak dengan racikan khas.',
+      price: 'Rp 10.000',
+      image: img2,
     },
     {
       id: 3,
-      title: 'Es Kopi Susu Aren',
-      desc: 'Perpaduan espresso kental, susu creamy, dan gula aren asli.',
-      price: 'Rp 15.000',
-      image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=600&auto=format&fit=crop',
+      title: 'Es Teh Manis',
+      desc: 'Teh manis yang disajikan dengan es batu.',
+      price: 'Rp 3.000',
+      image: img3,
     },
     {
       id: 4,
-      title: 'Roti Bakar Coklat Keju',
-      desc: 'Roti tebal dengan olesan mentega, taburan coklat meses, dan keju melimpah.',
-      price: 'Rp 16.000',
-      image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=600&auto=format&fit=crop',
+      title: 'Tempe Mendoan',
+      desc: 'Tempe yang dibalut adonan tepung dan digoreng tipis hingga kering, cocok dinikmati dengan cabai rawit hijau.',
+      price: 'Rp 2.000',
+      image: img4,
     }
   ];
 
@@ -92,8 +101,7 @@ export function SpecialMenu() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-primary font-semibold tracking-wider text-sm mb-2 uppercase">Curated Selection</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-text-main font-heading">Our Special Menu</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-text-main font-heading">Spesial Menu Kami</h2>
           </motion.div>
           <motion.a
             href="/menu"
@@ -103,12 +111,12 @@ export function SpecialMenu() {
             transition={{ duration: 0.6 }}
             className="text-primary font-semibold hover:text-primary-hover flex items-center gap-2 group"
           >
-            See Full Menu
-            <span className="group-hover:translate-x-1 transition-transform">-&gt;</span>
+            Lihat Menu Lengkap
+            <span className="group-hover:translate-x-1 transition-transform"></span>
           </motion.a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 md:overflow-visible md:pb-0 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {menuItems.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -117,9 +125,9 @@ export function SpecialMenu() {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
               variants={fadeInVariant}
-              className="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group"
+              className="bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group min-w-[280px] w-[80vw] md:w-auto md:min-w-0 snap-center shrink-0"
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-48 md:h-56 overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -129,10 +137,10 @@ export function SpecialMenu() {
                   {item.badge}
                 </div>
               </div>
-              <div className="p-6 relative">
-                <h3 className="font-bold text-xl text-text-main mb-2 font-heading leading-tight">{item.title}</h3>
-                <p className="text-text-muted text-sm mb-6 line-clamp-2">{item.desc}</p>
-                <div className="font-bold text-lg text-primary">{item.price}</div>
+              <div className="p-5 md:p-6 relative">
+                <h3 className="font-bold text-lg md:text-xl text-text-main mb-2 font-heading leading-tight">{item.title}</h3>
+                <p className="text-text-muted text-xs md:text-sm mb-4 md:mb-6 line-clamp-2">{item.desc}</p>
+                <div className="font-bold text-base md:text-lg text-primary">{item.price}</div>
               </div>
             </motion.div>
           ))}
@@ -147,8 +155,8 @@ export function AmbianceTeaser() {
     <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
       {/* Background Image / Video Placeholder */}
       <img
-        src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2000&auto=format&fit=crop"
-        alt="Cinematic Restaurant Interior"
+        src={sectionInterior}
+        alt="Cinematic Warmindo Interior"
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-black/60"></div>
@@ -161,7 +169,7 @@ export function AmbianceTeaser() {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-6xl font-bold text-white mb-6 font-heading"
         >
-          Sebuah Pengalaman Rasa dan Suasana
+          Pengalaman Rasa dan Tentang Suasana
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -170,7 +178,7 @@ export function AmbianceTeaser() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg text-gray-200 mb-8"
         >
-          Kami memadukan cita rasa autentik dengan desain ruang yang mengundang kenyamanan, menghadirkan momen tak terlupakan di setiap kunjungan Anda.
+          Kami memadukan cita rasa yang nikmat dengan desain ruang yang nyaman untuk bersantai, berbagi cerita, dan menikmati hidangan lezat.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -198,7 +206,7 @@ export function LocationAndCTA() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-2xl overflow-hidden shadow-lg h-[400px] w-full bg-gray-200 border border-border"
+          className="rounded-2xl overflow-hidden shadow-lg h-[250px] md:h-[400px] w-full bg-gray-200 border border-border"
         >
           <iframe
             src="https://maps.google.com/maps?q=-7.7463608,110.3456157&hl=id&z=16&output=embed"
@@ -229,15 +237,15 @@ export function LocationAndCTA() {
 
             <div>
               <h4 className="font-semibold text-lg text-text-main mb-1">Jam Operasional</h4>
-              <p className="text-text-muted">Senin - Minggu: 24 Jam Non-Stop</p>
+              <p className="text-text-muted">Senin - Minggu: 06.00 - 12.00 Malam</p>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href="https://wa.me/6280000000000" target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-6 py-4 bg-primary text-white font-semibold rounded-md hover:bg-primary-hover transition-colors duration-200 shadow-sm hover:shadow-md">
+            <a href="https://wa.me/6285123884737" target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-6 py-4 bg-primary text-white font-semibold rounded-md hover:bg-primary-hover transition-colors duration-200 shadow-sm hover:shadow-md">
               Pesan via WhatsApp
             </a>
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-6 py-4 bg-transparent text-primary border-2 border-primary font-semibold rounded-md hover:bg-primary hover:text-white transition-colors duration-200 shadow-sm hover:shadow-md">
+            <a href="https://maps.app.goo.gl/hTofiaUxjz7ujnP39" target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-6 py-4 bg-transparent text-primary border-2 border-primary font-semibold rounded-md hover:bg-primary hover:text-white transition-colors duration-200 shadow-sm hover:shadow-md">
               Arahkan ke Lokasi
             </a>
           </div>
@@ -358,8 +366,8 @@ export function CinematicSection() {
         {/* Center Image Container */}
         <div ref={mediaRef} className="w-[50vw] md:w-[25vw] h-[40vh] md:h-[50vh] rounded-[2rem] overflow-hidden relative z-10 shadow-2xl flex flex-col items-center justify-end pb-12 md:pb-16">
           <img
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2000&auto=format&fit=crop"
-            alt="Ambiance"
+            src={sectionInterior}
+            alt="Ambiance Warmindo"
             className="absolute inset-0 w-full h-full object-cover z-0"
           />
           {/* Dark gradient overlay at the bottom for text readability */}
@@ -388,14 +396,14 @@ export function CinematicSection() {
           ref={accent1Ref}
           className="absolute left-[5%] md:left-[15%] bottom-[15%] md:bottom-[20%] w-[35vw] md:w-[15vw] h-[15vh] md:h-[25vh] rounded-[1.5rem] overflow-hidden shadow-xl z-20"
         >
-          <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=600&auto=format&fit=crop" alt="Coffee" className="w-full h-full object-cover" />
+          <img src={sectionKopi} alt="Kopi Susu" className="w-full h-full object-cover" />
         </div>
 
         <div
           ref={accent2Ref}
           className="absolute right-[5%] md:right-[15%] top-[15%] md:top-[20%] w-[30vw] md:w-[12vw] h-[15vh] md:h-[20vh] rounded-[1.5rem] overflow-hidden shadow-xl z-20"
         >
-          <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=600&auto=format&fit=crop" alt="Toast" className="w-full h-full object-cover" />
+          <img src={sectionGorengan} alt="Gorengan" className="w-full h-full object-cover" />
         </div>
 
       </div>

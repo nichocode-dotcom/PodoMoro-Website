@@ -1,36 +1,33 @@
 import { useState, useEffect } from 'react';
 import AdminLayout from '../components/AdminLayout';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer 
+import { useAdmin } from '../context/AdminContext';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
-import { 
-  TrendingUp, 
-  Package, 
-  ShoppingCart, 
-  Users, 
-  AlertCircle 
+import {
+  TrendingUp, Package, ShoppingCart, Users, AlertCircle, Plus, Minus, X
 } from 'lucide-react';
 
 export default function AdminDashboard() {
-  const [analytics, setAnalytics] = useState({ total_pesanan: 0, total_pemasukan: 0 });
+  const { menus, orders, transactions, updateOrderStatus, updateMenu } = useAdmin();
 
-  // Uncomment block di bawah ini saat menghubungkan ke database riil
-  /*
-  useEffect(() => {
-    fetch('http://localhost:5000/api/analytics/harian')
-      .then(res => res.json())
-      .then(data => {
-        setAnalytics(data);
-      })
-      .catch(err => console.error("Error fetching analytics:", err));
-  }, []);
-  */
+  // Local state for Table Management
+  const [activeTables, setActiveTables] = useState(() => parseInt(localStorage.getItem('admin_active_tables')) || 12);
+  const [totalTables, setTotalTables] = useState(() => parseInt(localStorage.getItem('admin_total_tables')) || 20);
+
+  useEffect(() => { localStorage.setItem('admin_active_tables', activeTables); }, [activeTables]);
+  useEffect(() => { localStorage.setItem('admin_total_tables', totalTables); }, [totalTables]);
+
+  // Restock Modal State
+  const [restockModal, setRestockModal] = useState({ show: false, menu: null, amount: 20 });
+
+  // Dynamic calculations
+  const totalPesanan = orders.length;
+  const totalPemasukan = transactions
+    .filter(t => t.type === 'Kredit' && t.category === 'Penjualan')
+    .reduce((acc, curr) => acc + curr.amount, 0);
+
+  const stokMenipis = menus.filter(m => m.stok <= 5);
 
   const formatRupiah = (number) => {
     return new Intl.NumberFormat('id-ID', {
@@ -41,29 +38,48 @@ export default function AdminDashboard() {
   };
 
   const currentDate = new Date().toLocaleDateString('id-ID', {
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric'
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
   });
 
-  const revenueData = [
-    { hari: 'Senin', pemasukan: 2100000 },
-    { hari: 'Selasa', pemasukan: 1800000 },
-    { hari: 'Rabu', pemasukan: 2400000 },
-    { hari: 'Kamis', pemasukan: 2200000 },
-    { hari: 'Jumat', pemasukan: 3100000 },
-    { hari: 'Sabtu', pemasukan: 4500000 },
-    { hari: 'Minggu', pemasukan: 4250000 },
-  ];
+  // Calculate dynamic revenue chart data for the last 7 days
+  const getRevenueData = () => {
+    const data = [];
+    const today = new Date();
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+
+      const dateStr = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }).replace('.', '');
+      const dayName = d.toLocaleDateString('id-ID', { weekday: 'short' });
+
+      const total = transactions
+        .filter(t => t.date === dateStr && t.type === 'Kredit' && t.category === 'Penjualan')
+        .reduce((acc, curr) => acc + curr.amount, 0);
+
+      data.push({ hari: dayName, pemasukan: total });
+    }
+    return data;
+  };
+  const revenueData = getRevenueData();
+
+  const handleRestockSubmit = (e) => {
+    e.preventDefault();
+    if (restockModal.menu && restockModal.amount > 0) {
+      updateMenu(restockModal.menu.id, {
+        ...restockModal.menu,
+        stok: restockModal.menu.stok + parseInt(restockModal.amount)
+      });
+      setRestockModal({ show: false, menu: null, amount: 20 });
+    }
+  };
 
   return (
     <AdminLayout activeMenu="dashboard">
-      
+
       {/* Header Dashboard */}
       <header className="mb-8 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-1">Performa Hari Ini</h1>
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-slate-800 mb-1 tracking-tight">Performa Hari Ini</h1>
           <p className="text-slate-500 font-medium">{currentDate}</p>
         </div>
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-green-50 border border-green-100 text-green-700 shadow-sm">
@@ -74,16 +90,21 @@ export default function AdminDashboard() {
 
       {/* Top Cards (Modul Ringkasan) */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        
+
         {/* Card 1: Total Pemasukan */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col relative overflow-hidden">
+        <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 flex flex-col relative overflow-hidden">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Total Pemasukan</h3>
-            <div className="p-2 bg-orange-50 text-orange-600 rounded-lg">
+            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Total Pemasukan</h3>
+            <div className="p-2 bg-amber-50 text-amber-600 rounded-xl shrink-0">
               <TrendingUp className="w-5 h-5" />
             </div>
           </div>
-          <span className="text-3xl font-extrabold text-slate-900 mb-2">Rp 4.250.000</span>
+          <span
+            className="text-2xl lg:text-xl xl:text-3xl font-extrabold text-slate-900 mb-2 truncate"
+            title={formatRupiah(totalPemasukan)}
+          >
+            {formatRupiah(totalPemasukan)}
+          </span>
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-green-700">
               +12.5%
@@ -91,49 +112,55 @@ export default function AdminDashboard() {
             <span className="text-xs text-slate-400">vs kemarin</span>
           </div>
           {/* Dekorasi tipis */}
-          <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-orange-50 rounded-full blur-2xl opacity-60 pointer-events-none"></div>
+          <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-amber-50 rounded-full blur-2xl opacity-60 pointer-events-none"></div>
         </div>
 
         {/* Card 2: Total Pesanan */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col">
+        <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 flex flex-col">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Total Pesanan</h3>
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Total Pesanan</h3>
+            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl shrink-0">
               <ShoppingCart className="w-5 h-5" />
             </div>
           </div>
-          <span className="text-3xl font-extrabold text-slate-900 mb-2">148</span>
-          <span className="text-xs text-slate-400">Pesanan selesai hari ini</span>
+          <span className="text-2xl lg:text-xl xl:text-3xl font-extrabold text-slate-900 mb-2 truncate" title={totalPesanan}>
+            {totalPesanan}
+          </span>
+          <span className="text-xs text-slate-400">Total pesanan dalam sistem</span>
         </div>
 
         {/* Card 3: Status Meja */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col">
+        <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 flex flex-col">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Status Meja</h3>
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Status Meja</h3>
+            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
               <Users className="w-5 h-5" />
             </div>
           </div>
-          <div className="flex items-baseline gap-2 mb-2">
-            <span className="text-3xl font-extrabold text-slate-900">12</span>
-            <span className="text-lg font-medium text-slate-500">/ 20 Aktif</span>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center bg-slate-50 border border-slate-200 rounded-lg p-1">
+              <button onClick={() => setActiveTables(Math.max(0, activeTables - 1))} className="p-1 hover:bg-white hover:shadow-sm rounded transition-all text-slate-500"><Minus className="w-4 h-4" /></button>
+              <span className="text-xl font-extrabold text-slate-900 w-10 text-center">{activeTables}</span>
+              <button onClick={() => setActiveTables(Math.min(totalTables, activeTables + 1))} className="p-1 hover:bg-white hover:shadow-sm rounded transition-all text-slate-500"><Plus className="w-4 h-4" /></button>
+            </div>
+            <span className="text-lg font-medium text-slate-500">/ {totalTables} Aktif</span>
           </div>
           <div className="w-full bg-slate-100 rounded-full h-1.5 mt-1">
-            <div className="bg-indigo-600 h-1.5 rounded-full" style={{ width: '60%' }}></div>
+            <div className="bg-indigo-600 h-1.5 rounded-full transition-all duration-500" style={{ width: `${(activeTables / totalTables) * 100}%` }}></div>
           </div>
         </div>
 
         {/* Card 4: Peringatan Stok */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-red-100 flex flex-col">
+        <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-red-100 flex flex-col">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Peringatan Stok</h3>
-            <div className="p-2 bg-amber-50 text-amber-600 rounded-lg">
+            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Peringatan Stok</h3>
+            <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <Package className="w-5 h-5" />
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-3xl font-extrabold text-amber-600">4</span>
-            <span className="text-sm font-bold text-amber-600 leading-tight">Item Habis<br/>atau Menipis!</span>
+            <span className="text-3xl font-extrabold text-amber-600">{stokMenipis.length}</span>
+            <span className="text-sm font-bold text-amber-600 leading-tight">Item Habis<br />atau Menipis!</span>
           </div>
         </div>
 
@@ -141,9 +168,9 @@ export default function AdminDashboard() {
 
       {/* Middle Section: Chart & Inventory Alerts */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        
+
         {/* Main Chart (col-span-2) */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 lg:col-span-2">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 sm:p-6 lg:col-span-2 min-w-0">
           <div className="mb-6 flex justify-between items-center">
             <h2 className="text-lg font-bold text-slate-900">Grafik Pemasukan (7 Hari Terakhir)</h2>
           </div>
@@ -152,20 +179,20 @@ export default function AdminDashboard() {
               <BarChart data={revenueData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="hari" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} tickFormatter={(val) => `Rp ${val / 1000}k`} />
-                <Tooltip 
+                <YAxis width={65} axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} tickFormatter={(val) => `Rp ${new Intl.NumberFormat('id-ID', { notation: "compact", maximumFractionDigits: 1 }).format(val)}`} />
+                <Tooltip
                   cursor={{ fill: '#f8fafc' }}
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                   formatter={(value) => [formatRupiah(value), 'Pemasukan']}
                 />
-                <Bar dataKey="pemasukan" fill="#ea580c" radius={[4, 4, 0, 0]} barSize={40} />
+                <Bar dataKey="pemasukan" fill="#d97706" radius={[6, 6, 0, 0]} barSize={40} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Inventory Alerts (col-span-1) */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex flex-col">
           <div className="mb-6 flex justify-between items-center">
             <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-amber-500" />
@@ -173,36 +200,25 @@ export default function AdminDashboard() {
             </h2>
           </div>
           <div className="flex-1 overflow-y-auto pr-2 space-y-4">
-            
-            <div className="flex items-center justify-between p-4 bg-amber-50 rounded-lg border border-red-100">
-              <div>
-                <h4 className="font-bold text-slate-900 text-sm">Indomie Goreng</h4>
-                <p className="text-xs text-amber-600 font-medium">Sisa 1 Dus</p>
-              </div>
-              <button className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-md transition-colors shadow-sm">
-                Order
-              </button>
-            </div>
 
-            <div className="flex items-center justify-between p-4 bg-orange-50 rounded-lg border border-orange-100">
-              <div>
-                <h4 className="font-bold text-slate-900 text-sm">Telur Ayam</h4>
-                <p className="text-xs text-orange-600 font-medium">Sisa 2 Tray</p>
-              </div>
-              <button className="px-3 py-1.5 bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold rounded-md transition-colors shadow-sm">
-                Restock
-              </button>
-            </div>
-
-            <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-200">
-              <div>
-                <h4 className="font-bold text-slate-900 text-sm">Kopi Bubuk Hitam</h4>
-                <p className="text-xs text-slate-500 font-medium">Sisa 500g</p>
-              </div>
-              <button className="px-3 py-1.5 bg-white border border-gray-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-md transition-colors">
-                Order
-              </button>
-            </div>
+            {stokMenipis.length === 0 ? (
+              <div className="p-4 text-center text-slate-400 font-medium">Stok aman, tidak ada peringatan.</div>
+            ) : (
+              stokMenipis.map(menu => (
+                <div key={menu.id} className="flex items-center justify-between p-4 bg-amber-50 rounded-lg border border-red-100">
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm">{menu.nama_menu}</h4>
+                    <p className="text-xs text-amber-600 font-medium">Sisa Stok: {menu.stok}</p>
+                  </div>
+                  <button
+                    onClick={() => setRestockModal({ show: true, menu: menu, amount: 20 })}
+                    className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-md transition-colors shadow-sm"
+                  >
+                    Restock
+                  </button>
+                </div>
+              ))
+            )}
 
           </div>
         </div>
@@ -210,13 +226,14 @@ export default function AdminDashboard() {
       </section>
 
       {/* Bottom Section: Live Orders Table */}
-      <section className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+      <section className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden min-w-0">
         <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-          <h2 className="text-lg font-bold text-slate-900">Pesanan Langsung (Live Orders)</h2>
-          <button className="text-sm font-semibold text-orange-600 hover:text-orange-700">Lihat Semua</button>
+          <h2 className="text-lg font-bold text-slate-800">Pesanan Terkonfirmasi</h2>
+          <button onClick={() => window.location.href = '/admin-pesanan'} className="text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">Lihat Semua</button>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+        <div className="w-full">
+          {/* Desktop Table View */}
+          <table className="hidden md:table w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50">
                 <th className="p-4 text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-100">ID Pesanan</th>
@@ -224,54 +241,102 @@ export default function AdminDashboard() {
                 <th className="p-4 text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-100">Item</th>
                 <th className="p-4 text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-100">Total</th>
                 <th className="p-4 text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-100">Status</th>
-                <th className="p-4 text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-100">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
-              
-              <tr className="hover:bg-slate-50 transition-colors">
-                <td className="p-4 text-sm font-bold text-slate-900">#PM-001</td>
-                <td className="p-4 text-sm text-slate-600 font-medium">Makan di tempat (Meja 4)</td>
-                <td className="p-4 text-sm text-slate-600">Nasi Telur Pontianak (x2), Es Teh (x2)</td>
-                <td className="p-4 text-sm font-semibold text-slate-900">Rp 30.000</td>
-                <td className="p-4 text-sm">
-                  <span className="inline-flex px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-800">Selesai</span>
-                </td>
-                <td className="p-4 text-sm">
-                  <button className="text-slate-400 hover:text-slate-600 font-medium">Detail</button>
-                </td>
-              </tr>
 
-              <tr className="hover:bg-slate-50 transition-colors">
-                <td className="p-4 text-sm font-bold text-slate-900">#PM-002</td>
-                <td className="p-4 text-sm text-slate-600 font-medium">Bungkus / Takeaway</td>
-                <td className="p-4 text-sm text-slate-600">Indomie Goreng Spesial (x3)</td>
-                <td className="p-4 text-sm font-semibold text-slate-900">Rp 45.000</td>
-                <td className="p-4 text-sm">
-                  <span className="inline-flex px-2.5 py-1 rounded-md text-xs font-bold bg-yellow-100 text-yellow-800">Menyiapkan</span>
-                </td>
-                <td className="p-4 text-sm">
-                  <button className="text-slate-400 hover:text-slate-600 font-medium">Detail</button>
-                </td>
-              </tr>
-
-              <tr className="hover:bg-slate-50 transition-colors">
-                <td className="p-4 text-sm font-bold text-slate-900">#PM-003</td>
-                <td className="p-4 text-sm text-slate-600 font-medium">Makan di tempat (Meja 12)</td>
-                <td className="p-4 text-sm text-slate-600">Roti Bakar Coklat Keju (x1)</td>
-                <td className="p-4 text-sm font-semibold text-slate-900">Rp 15.000</td>
-                <td className="p-4 text-sm">
-                  <span className="inline-flex px-2.5 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-800">Menunggu</span>
-                </td>
-                <td className="p-4 text-sm">
-                  <button className="text-slate-400 hover:text-slate-600 font-medium">Detail</button>
-                </td>
-              </tr>
+              {orders.length === 0 ? (
+                <tr><td colSpan="6" className="text-center p-8 text-slate-400 font-medium">Tidak ada pesanan aktif.</td></tr>
+              ) : (
+                orders.slice(0, 5).map(order => (
+                  <tr key={order.id} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 text-sm font-bold text-slate-900">{order.id}</td>
+                    <td className="p-4 text-sm text-slate-600 font-medium">{order.type}</td>
+                    <td className="p-4 text-sm text-slate-600">
+                      {order.items.map(i => `${i.nama_menu} (x${i.qty})`).join(', ')}
+                    </td>
+                    <td className="p-4 text-sm font-semibold text-slate-900">{formatRupiah(order.total)}</td>
+                    <td className="p-4 text-sm">
+                      <span className={`inline-flex px-2.5 py-1 rounded-md text-xs font-bold ${order.status === 'Selesai' ? 'bg-green-100 text-green-800' :
+                          order.status === 'Menyiapkan' ? 'bg-amber-100 text-amber-800' :
+                            'bg-blue-100 text-blue-800'
+                        }`}>{order.status}</span>
+                    </td>
+                  </tr>
+                ))
+              )}
 
             </tbody>
           </table>
+
+          {/* Mobile Card View */}
+          <div className="md:hidden flex flex-col divide-y divide-slate-100">
+            {orders.length === 0 ? (
+              <div className="p-8 text-center text-slate-400 font-medium">Tidak ada pesanan aktif.</div>
+            ) : (
+              orders.slice(0, 5).map(order => (
+                <div key={order.id} className="p-5 flex flex-col gap-3 hover:bg-slate-50/50 transition-colors">
+                  <div className="flex justify-between items-start gap-3">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-extrabold text-slate-900">{order.id}</span>
+                        <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold ${
+                          order.status === 'Selesai' ? 'bg-green-100 text-green-800' :
+                          order.status === 'Menyiapkan' ? 'bg-amber-100 text-amber-800' :
+                          'bg-blue-100 text-blue-800'
+                        }`}>{order.status}</span>
+                      </div>
+                      <p className="text-xs font-semibold text-slate-500">{order.type}</p>
+                    </div>
+                    <span className="font-extrabold text-amber-600 shrink-0">{formatRupiah(order.total)}</span>
+                  </div>
+                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      {order.items.map(i => `${i.nama_menu} (x${i.qty})`).join(', ')}
+                    </p>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
         </div>
       </section>
+
+
+      {/* Restock Modal */}
+      {restockModal.show && restockModal.menu && (
+        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl w-full max-w-sm shadow-xl p-8 text-left animate-in fade-in zoom-in duration-200">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-bold text-slate-900">Restock Menu</h3>
+              <button onClick={() => setRestockModal({ show: false, menu: null, amount: 20 })} className="text-slate-400 hover:text-slate-600">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <p className="text-slate-500 text-sm mb-4">
+              Menambahkan stok untuk <strong>{restockModal.menu.nama_menu}</strong>. (Saat ini: {restockModal.menu.stok})
+            </p>
+
+            <form onSubmit={handleRestockSubmit}>
+              <label className="block text-sm font-semibold text-slate-700 mb-1">Jumlah Tambahan (Porsi)</label>
+              <input
+                type="number"
+                min="1"
+                required
+                value={restockModal.amount}
+                onChange={(e) => setRestockModal({ ...restockModal, amount: e.target.value })}
+                className="w-full px-4 py-3 border border-slate-200 bg-slate-50/50 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none mb-6 text-lg font-bold"
+              />
+              <div className="flex gap-3">
+                <button type="button" onClick={() => setRestockModal({ show: false, menu: null, amount: 20 })} className="px-5 py-3 text-slate-600 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl transition-colors flex-1">Batal</button>
+                <button type="submit" className="px-5 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl transition-colors flex-1 shadow-sm shadow-amber-600/30">Tambah</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
     </AdminLayout>
   );

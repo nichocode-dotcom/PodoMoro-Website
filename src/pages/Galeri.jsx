@@ -1,8 +1,23 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, PlayCircle, Camera, ArrowRight, Users } from 'lucide-react';
+import { X, Camera, ArrowRight, Users } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+
+import img1 from '../assets/fasilitas_warmindo.png'
+import img2 from '../assets/section_gorengan.png';
+import img3 from '../assets/menu_indomie_goreng_dobel.png';
+import img4 from '../assets/tata_ruang.png';
+import img5 from '../assets/es_teh_manis.png';
+import img6 from '../assets/es_jeruk.png';
+import img7 from '../assets/menu_indomie_rebus_ayam_bawang.png'
+import warmindoSudutFavorit from '../assets/warmindo_sudut_favorit.png';
+import warmindoDapurMasak from '../assets/warmindo_dapur_masak.png';
+import warmindoBahanSegar from '../assets/warmindo_bahan_segar.png';
+import warmindoKebersamaan from '../assets/warmindo_kebersamaan.png';
+import warmindoChefBumbu from '../assets/warmindo_chef_bumbu.png';
+import warmindoNugasWifi from '../assets/warmindo_nugas_wifi.png';
+import warmindoMusikAkustik from '../assets/warmindo_musik_akustik.png';
 
 export default function Galeri() {
   const [selectedMedia, setSelectedMedia] = useState(null);
@@ -10,88 +25,82 @@ export default function Galeri() {
   const galleryData = [
     {
       id: 1, kategori: "Suasana", tipe: "image",
-      url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      spanClass: "md:col-span-2 md:row-span-2",
+      url: warmindoSudutFavorit,
+      spanClass: "col-span-2 md:row-span-2",
       caption: "Sudut terfavorit pelanggan PodoMoro. Hangat, santai, dan cocok untuk bercengkerama hingga larut malam."
     },
     {
       id: 2, kategori: "Menu", tipe: "image",
-      url: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      url: img2,
       spanClass: "md:col-span-1 md:row-span-1",
       caption: "Indomie Goreng Spesial dengan racikan bumbu rahasia yang selalu bikin kangen."
     },
     {
-      id: 3, kategori: "Di Balik Dapur", tipe: "video",
-      url: "https://assets.mixkit.co/videos/preview/mixkit-preparing-a-pizza-in-a-wood-oven-41662-large.mp4",
+      id: 3, kategori: "Di Balik Dapur", tipe: "image",
+      url: warmindoDapurMasak,
       spanClass: "md:col-span-1 md:row-span-2",
       caption: "Proses memasak di dapur kami yang selalu mengutamakan kebersihan dan kecepatan ekstra."
     },
     {
       id: 4, kategori: "Menu", tipe: "image",
-      url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      url: img3,
       spanClass: "md:col-span-1 md:row-span-1",
       caption: "Kuah kental berempah dari Indomie Rebus Tek-Tek andalan kami."
     },
     {
       id: 5, kategori: "Suasana", tipe: "image",
-      url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      spanClass: "md:col-span-2 md:row-span-1",
+      url: img4,
+      spanClass: "col-span-2 md:row-span-1",
       caption: "Desain interior minimalis kekinian yang membuat Anda betah berlama-lama."
     },
     {
       id: 6, kategori: "Di Balik Dapur", tipe: "image",
-      url: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      url: warmindoBahanSegar,
       spanClass: "md:col-span-1 md:row-span-1",
       caption: "Setiap hidangan disiapkan dengan bahan-bahan yang selalu segar setiap harinya."
     },
     {
       id: 7, kategori: "Menu", tipe: "image",
-      url: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      url: img5,
       spanClass: "md:col-span-1 md:row-span-1",
       caption: "Kesegaran tiada tara dari segelas Es Teh Manis Jumbo."
     },
     {
-      id: 8, kategori: "Suasana", tipe: "video",
-      url: "https://assets.mixkit.co/videos/preview/mixkit-friends-toasting-with-beers-at-a-bar-43187-large.mp4",
-      spanClass: "md:col-span-2 md:row-span-2",
+      id: 8, kategori: "Suasana", tipe: "image",
+      url: warmindoKebersamaan,
+      spanClass: "col-span-2 md:row-span-2",
       caption: "Momen kebersamaan dan tawa canda adalah esensi sejati dari PodoMoro."
     },
     {
       id: 9, kategori: "Menu", tipe: "image",
-      url: "https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      url: img6,
       spanClass: "md:col-span-1 md:row-span-2",
       caption: "Roti Bakar Coklat Keju yang lumer di mulut, camilan penutup yang sempurna."
     },
     {
       id: 10, kategori: "Menu", tipe: "image",
-      url: "https://images.unsplash.com/photo-1596649272304-406cb75b8e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      url: img7,
       spanClass: "md:col-span-1 md:row-span-1",
-      caption: "Mendoan Panas nan gurih disajikan dengan cocolan sambal kecap pedas manis."
+      caption: "Indomie Rebus Ayam Bawang hangat nan gurih dengan potongan ayam dan telur yang bikin nagih."
     },
     {
       id: 11, kategori: "Di Balik Dapur", tipe: "image",
-      url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      url: warmindoChefBumbu,
       spanClass: "md:col-span-2 md:row-span-1",
       caption: "Chef PodoMoro memastikan setiap bumbu tertakar dengan presisi."
     },
     {
       id: 12, kategori: "Suasana", tipe: "image",
-      url: "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      url: warmindoNugasWifi,
       spanClass: "md:col-span-1 md:row-span-1",
       caption: "Fasilitas WiFi kencang dan meja nyaman, cocok untuk maraton nugas kuliah."
     },
     {
       id: 13, kategori: "Suasana", tipe: "image",
-      url: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      url: warmindoMusikAkustik,
       spanClass: "md:col-span-2 md:row-span-1",
       caption: "Suasana malam yang diiringi musik akustik santai ala PodoMoro."
     },
-    {
-      id: 14, kategori: "Menu", tipe: "image",
-      url: "https://images.unsplash.com/photo-1550586940-058e5ff41249?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      spanClass: "md:col-span-1 md:row-span-1",
-      caption: "Kopi Hitam Joss, racikan murni dari dapur untuk menemani obrolan dalam."
-    }
   ];
 
   // Kunci scroll saat modal terbuka
@@ -137,7 +146,7 @@ export default function Galeri() {
           {/* Bento Grid dengan auto-flow dense agar celah kosong terisi otomatis */}
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:auto-rows-[250px] grid-flow-dense"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 auto-rows-[150px] sm:auto-rows-[200px] md:auto-rows-[250px] grid-flow-dense"
           >
             <AnimatePresence mode="popLayout">
               {galleryData.map((item) => (
@@ -151,28 +160,12 @@ export default function Galeri() {
                   className={`relative rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-gray-200 ${item.spanClass}`}
                   onClick={() => setSelectedMedia(item)}
                 >
-                  {item.tipe === 'image' ? (
-                    <img
-                      src={item.url}
-                      alt={`Galeri ${item.kategori}`}
-                      loading="lazy"
-                      className="w-full h-full object-cover brightness-[0.85] group-hover:brightness-100 transition-all duration-700 ease-out group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="relative w-full h-full">
-                      <video
-                        src={item.url}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover brightness-[0.85] group-hover:brightness-100 transition-all duration-700 ease-out group-hover:scale-105"
-                      />
-                      <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm p-2 rounded-full text-white pointer-events-none">
-                        <PlayCircle className="w-5 h-5" />
-                      </div>
-                    </div>
-                  )}
+                  <img
+                    src={item.url}
+                    alt={`Galeri ${item.kategori}`}
+                    loading="lazy"
+                    className="w-full h-full object-cover brightness-[0.85] group-hover:brightness-100 transition-all duration-700 ease-out group-hover:scale-105"
+                  />
                   {/* Overlay Kategori saat Hover */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <span className="text-white font-semibold tracking-wider text-sm">
@@ -185,35 +178,35 @@ export default function Galeri() {
           </motion.div>
 
           {/* Community & CTA Section */}
-          <div className="mt-24 space-y-8 lg:space-y-0 lg:flex lg:gap-8">
+          <div className="mt-12 md:mt-24 space-y-4 md:space-y-8 lg:space-y-0 lg:flex lg:gap-8">
 
             {/* Community Banner */}
-            <div className="flex-1 bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-8 md:p-12 text-center border border-red-100 shadow-sm flex flex-col justify-center items-center group">
-              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="flex-1 bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-6 sm:p-8 md:p-12 text-center border border-red-100 shadow-sm flex flex-col justify-center items-center group">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Camera className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">Punya Momen Seru?</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-4">Punya Cerita Seru?</h3>
               <p className="text-slate-500 mb-6 max-w-md">
-                Upload foto nongkrong atau hidangan favoritmu ke Instagram dengan hashtag <span className="font-bold text-amber-600">#MomenPodoMoro</span>.
+                Abadikan foto nongkrong atau hidangan favoritmu ke Instagram dengan hashtag <span className="font-bold text-amber-600">#MomenPodoMoro</span>.
                 Dapatkan kesempatan memenangkan Es Teh Jumbo gratis di kunjungan berikutnya!
               </p>
             </div>
 
             {/* Final CTA */}
-            <div className="flex-[1.5] bg-gray-900 text-white rounded-3xl p-8 md:p-12 text-center shadow-lg flex flex-col justify-center items-center relative overflow-hidden">
+            <div className="flex-[1.5] bg-gray-900 text-white rounded-3xl p-6 sm:p-8 md:p-12 text-center shadow-lg flex flex-col justify-center items-center relative overflow-hidden">
               {/* Dekorasi Glow Efek */}
               <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-amber-600/20 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-orange-500/20 rounded-full blur-3xl"></div>
 
-              <h3 className="text-3xl md:text-4xl font-bold mb-6 relative z-10">Tergiur dengan hidangan kami?</h3>
-              <p className="text-gray-300 mb-8 max-w-md relative z-10">
-                Jangan cuma dilihat. Datang sekarang atau intip menu lengkap kami untuk merencanakan pesananmu!
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 relative z-10">Tergiur dengan hidangan kami?</h3>
+              <p className="text-gray-300 text-sm sm:text-base mb-6 sm:mb-8 max-w-md relative z-10">
+                Jangan cuma dilihat. Datang sekarang atau kunjungi menu lengkap kami untuk mendapatkan hidangan favoritmu!
               </p>
               <a
                 href="/menu"
-                className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-600/30 relative z-10"
+                className="flex justify-center items-center w-full sm:w-auto gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-600/30 relative z-10"
               >
-                Lihat Menu Lengkap <ArrowRight className="w-5 h-5" />
+                Lihat Menu Lengkap
               </a>
             </div>
 
@@ -251,20 +244,11 @@ export default function Galeri() {
             >
               {/* Media Area */}
               <div className="relative w-full flex justify-center items-center h-[55vh] md:h-[65vh] bg-black">
-                {selectedMedia.tipe === 'image' ? (
-                  <img
-                    src={selectedMedia.url}
-                    alt={`Fokus ${selectedMedia.kategori}`}
-                    className="max-w-full max-h-full object-contain"
-                  />
-                ) : (
-                  <video
-                    src={selectedMedia.url}
-                    controls
-                    autoPlay
-                    className="max-w-full max-h-full object-contain"
-                  />
-                )}
+                <img
+                  src={selectedMedia.url}
+                  alt={`Fokus ${selectedMedia.kategori}`}
+                  className="max-w-full max-h-full object-contain"
+                />
               </div>
 
               {/* Caption Area */}

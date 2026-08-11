@@ -4,6 +4,10 @@ import { CheckCircle2, Star, Wifi, Wallet, Clock, Sparkles, Quote, ChevronLeft, 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+import img1 from '../assets/tata_ruang.png';
+import img2 from '../assets/dapur.jpg';
+import img3 from '../assets/menu_indomie_goreng_spesial.png'
+
 // Variabel untuk animasi
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -47,7 +51,7 @@ export default function TentangKami() {
 
       <main className="flex-grow pt-16 md:pt-20 pb-16 overflow-hidden">
         {/* 1. Hero Section (Kisah Kami) */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial="hidden"
@@ -59,7 +63,7 @@ export default function TentangKami() {
                 Lebih dari sekadar <span className="text-amber-600">warung makan.</span>
               </h1>
               <p className="text-lg text-slate-500 leading-relaxed mb-8">
-                Berdiri sejak tahun 2018, PodoMoro lahir dari kecintaan kami terhadap kuliner Nusantara. Kami menyajikan hidangan sederhana namun penuh makna seperti Indomie dan racikan minuman hangat khas warung. "PodoMoro" adalah doa agar tempat ini selalu membawa berkah bagi setiap pengunjungnya.
+                Berdiri sejak tahun 2015, PodoMoro lahir dari kecintaan kami terhadap kuliner Nusantara. Kami menyajikan berbagai hidangan sederhana seperti Indomie dan racikan minuman hangat khas warung. Nama PodoMoro adalah doa agar tempat ini selalu membawa berkah bagi setiap pengunjungnya.
               </p>
             </motion.div>
 
@@ -71,18 +75,18 @@ export default function TentangKami() {
               transition={{ duration: 0.7 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src={img1}
                 alt="Suasana Warung PodoMoro"
                 className="w-full h-auto object-cover rounded-3xl shadow-md"
               />
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-4 max-w-xs z-10">
+              <div className="absolute -bottom-6 left-2 sm:-bottom-8 sm:-left-8 bg-white p-4 sm:p-5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-3 sm:gap-4 max-w-[280px] sm:max-w-xs z-10">
                 <div className="bg-green-100 p-2 rounded-full flex-shrink-0">
                   <CheckCircle2 className="w-6 h-6 text-green-600" />
                 </div>
                 <p className="text-sm font-medium text-slate-700">
-                  <span className="font-bold text-slate-800">Sejak 2018</span> <br />
-                  Menyajikan ribuan mangkuk kebahagiaan
+                  <span className="font-bold text-slate-800">Sejak 2015</span> <br />
+                  Menyajikan ribuan hidangan kebahagiaan
                 </p>
               </div>
             </motion.div>
@@ -145,9 +149,9 @@ export default function TentangKami() {
                   transition={{ duration: 0.6 }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    src={img2}
                     alt="Pelayanan warung"
-                    className="w-full h-[300px] md:h-[400px] object-cover rounded-3xl shadow-md"
+                    className="w-full h-[300px] md:h-[400px] object-cover object-[40%_50%] rounded-3xl shadow-md"
                   />
                 </motion.div>
                 <motion.div
@@ -230,26 +234,26 @@ export default function TentangKami() {
               <p className="text-lg text-slate-500">Kami memastikan Anda mendapatkan pengalaman terbaik saat berkunjung.</p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {[
-                { icon: <Wifi className="w-8 h-8 text-amber-600" />, title: "Free WiFi Cepat", desc: "Koneksi stabil untuk nugas atau kerja." },
-                { icon: <Wallet className="w-8 h-8 text-amber-600" />, title: "Harga Pelajar", desc: "Ramah di kantong tanpa mengorbankan kualitas." },
-                { icon: <Clock className="w-8 h-8 text-amber-600" />, title: "Buka 24 Jam", desc: "Siap melayani perut lapar Anda kapan saja." },
-                { icon: <Sparkles className="w-8 h-8 text-amber-600" />, title: "Area Bersih", desc: "Kenyamanan dan kebersihan adalah prioritas kami." }
+                { icon: <Wifi className="w-6 h-6 sm:w-8 sm:h-8 text-amber-600" />, title: "Free WiFi", desc: "Koneksi stabil untuk nugas atau kerja." },
+                { icon: <Wallet className="w-6 h-6 sm:w-8 sm:h-8 text-amber-600" />, title: "Harga Pelajar", desc: "Ramah di kantong tetap berkualitas." },
+                { icon: <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-amber-600" />, title: "Setiap Hari", desc: "Siap melayani perut lapar Anda." },
+                { icon: <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-amber-600" />, title: "Area Bersih", desc: "Kenyamanan adalah prioritas kami." }
               ].map((facility, idx) => (
                 <motion.div
                   key={idx}
-                  className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group"
+                  className="bg-white p-4 sm:p-8 rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                 >
-                  <div className="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-amber-50 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                     {facility.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800 mb-3">{facility.title}</h3>
-                  <p className="text-slate-500">{facility.desc}</p>
+                  <h3 className="text-sm sm:text-xl font-bold text-slate-800 mb-2 sm:mb-3">{facility.title}</h3>
+                  <p className="text-xs sm:text-base text-slate-500 leading-relaxed">{facility.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -269,7 +273,7 @@ export default function TentangKami() {
               {/* Background Image & Cinematic Dark Overlay */}
               <div className="absolute inset-0">
                 <img
-                  src="https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                  src={img3}
                   alt="Suasana Dapur PodoMoro"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

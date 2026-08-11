@@ -9,8 +9,8 @@ export default function Features() {
           <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-primary/10 text-primary">
             <Utensils className="w-6 h-6" />
           </div>
-          <h3 className="text-xl font-bold mb-2 text-text-main font-heading">50+ Menu</h3>
-          <p className="text-sm text-text-muted m-0">
+          <h3 className="text-xl font-bold mb-2 text-text-main font-heading">30+ Menu</h3>
+          <p className="text-sm text-text-muted m-0 text">
             Mulai dari hidangan klasik favorit hingga kreasi khas kami yang unik, jelajahi beragam menu yang dirancang untuk memuaskan setiap selera.
           </p>
         </div>
@@ -21,7 +21,7 @@ export default function Features() {
           </div>
           <h3 className="text-xl font-bold mb-2 text-text-main font-heading">Buka Setiap Hari</h3>
           <p className="text-sm text-text-muted m-0">
-            Buka setiap hari 24 Jam Non-Stop. Nikmati hidangan hangat kapan saja Anda inginkan.
+            Buka setiap hari dari pukul 06.00 pagi sampai 00.00 malam. Nikmati hidangan hangat kapan saja Anda inginkan.
           </p>
         </div>
 
@@ -31,7 +31,7 @@ export default function Features() {
           </div>
           <h3 className="text-xl font-bold mb-2 text-text-main font-heading">Rating 5.0</h3>
           <p className="text-sm text-text-muted m-0">
-            Disukai oleh pelanggan kami karena rasa yang luar biasa, lingkungan yang bersih, dan pelayanan yang luar biasa.
+            Disukai oleh pelanggan kami karena rasa yang nikmat, lingkungan yang nyaman, dan pelayanan yang memuaskan.
           </p>
         </div>
 

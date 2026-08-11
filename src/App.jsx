@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AdminProvider } from './context/AdminContext';
 import SplashScreen from './components/SplashScreen';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
@@ -9,6 +10,8 @@ import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminMenu from './pages/AdminMenu';
 import AdminKeuangan from './pages/AdminKeuangan';
+import AdminPesanan from './pages/AdminPesanan';
+import AccessibilityWidget from './components/AccessibilityWidget';
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -47,10 +50,12 @@ function App() {
     PageComponent = <AdminMenu />;
   } else if (currentPath === '/admin-keuangan') {
     PageComponent = <AdminKeuangan />;
+  } else if (currentPath === '/admin-pesanan') {
+    PageComponent = <AdminPesanan />;
   }
 
   return (
-    <>
+    <AdminProvider>
       {showSplash && (
         <SplashScreen onComplete={() => {
           setShowSplash(false);
@@ -59,8 +64,9 @@ function App() {
       )}
       <div className="relative z-0 min-h-screen">
         {PageComponent}
+        {!currentPath.startsWith('/admin') && <AccessibilityWidget />}
       </div>
-    </>
+    </AdminProvider>
   );
 }
 

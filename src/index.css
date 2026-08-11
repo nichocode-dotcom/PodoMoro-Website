@@ -56,3 +56,34 @@ h6 {
 .animate-scroll-left:hover {
   animation-play-state: paused;
 }
+
+/* Accessibility (A11y) Features */
+.a11y-large-text {
+  font-size: 115% !important;
+}
+
+.a11y-large-text h1, .a11y-large-text h2, .a11y-large-text h3 {
+  font-size: 110% !important;
+}
+
+body.a11y-high-contrast::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  pointer-events: none;
+  backdrop-filter: contrast(130%) saturate(120%) brightness(95%);
+}
+
+.a11y-dyslexia * {
+  font-family: Arial, Helvetica, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+  line-height: 1.6 !important;
+}
+
+.a11y-reduce-motion * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
