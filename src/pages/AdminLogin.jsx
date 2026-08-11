@@ -1,5 +1,5 @@
 import { User, Lock } from 'lucide-react';
-import logo from '../assets/Logo-removebg-preview.png';
+import logo from '../assets/Logo-removebg-preview.webp';
 
 export default function AdminLogin() {
   return (

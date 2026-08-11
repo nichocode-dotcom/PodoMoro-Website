@@ -4,20 +4,20 @@ import { X, Camera, ArrowRight, Users } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import img1 from '../assets/fasilitas_warmindo.png'
-import img2 from '../assets/section_gorengan.png';
-import img3 from '../assets/menu_indomie_goreng_dobel.png';
-import img4 from '../assets/tata_ruang.png';
-import img5 from '../assets/es_teh_manis.png';
-import img6 from '../assets/es_jeruk.png';
-import img7 from '../assets/menu_indomie_rebus_ayam_bawang.png'
-import warmindoSudutFavorit from '../assets/warmindo_sudut_favorit.png';
-import warmindoDapurMasak from '../assets/warmindo_dapur_masak.png';
-import warmindoBahanSegar from '../assets/warmindo_bahan_segar.png';
-import warmindoKebersamaan from '../assets/warmindo_kebersamaan.png';
-import warmindoChefBumbu from '../assets/warmindo_chef_bumbu.png';
-import warmindoNugasWifi from '../assets/warmindo_nugas_wifi.png';
-import warmindoMusikAkustik from '../assets/warmindo_musik_akustik.png';
+import img1 from '../assets/fasilitas_warmindo.webp'
+import img2 from '../assets/section_gorengan.webp';
+import img3 from '../assets/menu_indomie_goreng_dobel.webp';
+import img4 from '../assets/tata_ruang.webp';
+import img5 from '../assets/es_teh_manis.webp';
+import img6 from '../assets/es_jeruk.webp';
+import img7 from '../assets/menu_indomie_rebus_ayam_bawang.webp'
+import warmindoSudutFavorit from '../assets/warmindo_sudut_favorit.webp';
+import warmindoDapurMasak from '../assets/warmindo_dapur_masak.webp';
+import warmindoBahanSegar from '../assets/warmindo_bahan_segar.webp';
+import warmindoKebersamaan from '../assets/warmindo_kebersamaan.webp';
+import warmindoChefBumbu from '../assets/warmindo_chef_bumbu.webp';
+import warmindoNugasWifi from '../assets/warmindo_nugas_wifi.webp';
+import warmindoMusikAkustik from '../assets/warmindo_musik_akustik.webp';
 
 export default function Galeri() {
   const [selectedMedia, setSelectedMedia] = useState(null);

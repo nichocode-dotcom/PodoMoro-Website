@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import logo from '../assets/Logo-removebg-preview.png';
+import logo from '../assets/Logo-removebg-preview.webp';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 

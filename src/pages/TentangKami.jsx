@@ -4,9 +4,9 @@ import { CheckCircle2, Star, Wifi, Wallet, Clock, Sparkles, Quote, ChevronLeft, 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import img1 from '../assets/tata_ruang.png';
-import img2 from '../assets/dapur.jpg';
-import img3 from '../assets/menu_indomie_goreng_spesial.png'
+import img1 from '../assets/tata_ruang.webp';
+import img2 from '../assets/dapur.webp';
+import img3 from '../assets/menu_indomie_goreng_spesial.webp'
 
 // Variabel untuk animasi
 const fadeUp = {

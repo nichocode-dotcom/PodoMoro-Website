@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-import heroImg1 from '../assets/section_gorengan.png';
-import heroImg2 from '../assets/hero_indomie_goreng.png';
-import heroImg3 from '../assets/hero_es_teh.png';
+import heroImg1 from '../assets/section_gorengan.webp';
+import heroImg2 from '../assets/hero_indomie_goreng.webp';
+import heroImg3 from '../assets/hero_es_teh.webp';
 
 // AI Image Generation Prompts (Midjourney/DALL-E):
 // 1. Noodle bowl: "Commercial food photography, a steaming bowl of Asian noodles with rich dark broth, topped with fresh green garnish, soft boiled egg, and sliced roasted meat, dramatic studio lighting, 8k resolution, photorealistic, natural textures, appetizing, shot on 85mm lens, depth of field --ar 1:1"

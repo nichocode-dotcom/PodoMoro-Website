@@ -5,14 +5,14 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
-import sectionInterior from '../assets/section_warmindo_interior.png';
-import sectionKopi from '../assets/section_kopi_susu.png';
-import sectionGorengan from '../assets/section_gorengan.png';
+import sectionInterior from '../assets/section_warmindo_interior.webp';
+import sectionKopi from '../assets/section_kopi_susu.webp';
+import sectionGorengan from '../assets/section_gorengan.webp';
 
-import img1 from '../assets/menu_indomie_goreng_spesial.png';
-import img2 from '../assets/menu_indomie_goreng_telur.png';
-import img3 from '../assets/es_teh_manis.png';
-import img4 from '../assets/section_gorengan.png';
+import img1 from '../assets/menu_indomie_goreng_spesial.webp';
+import img2 from '../assets/menu_indomie_goreng_telur.webp';
+import img3 from '../assets/es_teh_manis.webp';
+import img4 from '../assets/section_gorengan.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 

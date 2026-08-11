@@ -1,5 +1,5 @@
 import { LayoutDashboard, UtensilsCrossed, Wallet, LogOut, ClipboardList } from 'lucide-react';
-import logo from '../assets/Logo-removebg-preview.png';
+import logo from '../assets/Logo-removebg-preview.webp';
 
 export default function AdminLayout({ children, activeMenu }) {
   const menus = [

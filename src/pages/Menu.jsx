@@ -6,11 +6,11 @@ import Footer from '../components/Footer';
 import { useAdmin } from '../context/AdminContext';
 
 // Marquee images are kept
-import marquee1 from '../assets/hero_indomie_goreng.png';
-import marquee2 from '../assets/menu_indomie_goreng_spesial.png';
-import marquee3 from '../assets/menu_indomie_rebus_telur.png';
-import marquee4 from '../assets/section_gorengan.png';
-import marquee5 from '../assets/menu_indomie_rebus_ayam_bawang.png';
+import marquee1 from '../assets/hero_indomie_goreng.webp';
+import marquee2 from '../assets/menu_indomie_goreng_spesial.webp';
+import marquee3 from '../assets/menu_indomie_rebus_telur.webp';
+import marquee4 from '../assets/section_gorengan.webp';
+import marquee5 from '../assets/menu_indomie_rebus_ayam_bawang.webp';
 
 export default function Menu() {
   const { menus } = useAdmin();
