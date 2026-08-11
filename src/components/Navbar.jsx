@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Instagram, Facebook, MapPin, Search } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import logo from '../assets/Logo-removebg-preview.png';
 
 const navLinks = [
