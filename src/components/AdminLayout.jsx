@@ -1,4 +1,5 @@
 import { LayoutDashboard, UtensilsCrossed, Wallet, LogOut, ClipboardList } from 'lucide-react';
+import logo from '../assets/Logo-removebg-preview.png';
 
 export default function AdminLayout({ children, activeMenu }) {
   const menus = [
@@ -17,7 +18,7 @@ export default function AdminLayout({ children, activeMenu }) {
         {/* Brand / Logo Area */}
         <div className="h-24 border-b border-slate-100 flex items-center justify-center px-6">
           <img 
-            src="/src/assets/Logo-removebg-preview.png" 
+            src={logo} 
             alt="PodoMoro Logo" 
             className="h-14 object-contain hover:scale-105 transition-transform duration-300" 
           />
@@ -71,7 +72,7 @@ export default function AdminLayout({ children, activeMenu }) {
       <header className="md:hidden bg-white border-b border-slate-200 h-16 flex items-center justify-between px-5 sticky top-0 z-40 shadow-sm">
         <div className="flex items-center gap-3">
           <img 
-            src="/src/assets/Logo-removebg-preview.png" 
+            src={logo} 
             alt="PodoMoro Logo" 
             className="h-9 object-contain" 
           />

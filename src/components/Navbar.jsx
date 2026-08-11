@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Instagram, Facebook, MapPin, Search } from 'lucide-react';
+import logo from '../assets/Logo-removebg-preview.png';
+
 const navLinks = [
   { id: 'home', label: 'Beranda', href: '/' },
   { id: 'menu', label: 'Menu', href: '/menu' },
@@ -26,7 +28,7 @@ export default function Navbar({ activePage = 'home' }) {
       <div className="w-full max-w-[1200px] mx-auto px-4">
         <nav className="flex items-center justify-between py-4">
           <a href="/" className="font-heading text-2xl font-bold text-primary flex items-center gap-1 justify-self-start">
-            <img src="/src/assets/logo-removebg-preview.png" alt="PodoMoro Logo" className="h-12 sm:h-14 w-auto scale-100 object-contain drop-shadow-sm" />
+            <img src={logo} alt="PodoMoro Logo" className="h-12 sm:h-14 w-auto scale-100 object-contain drop-shadow-sm" />
             <span className="ml-1 pt-1">PodoMoro</span>
           </a>
 

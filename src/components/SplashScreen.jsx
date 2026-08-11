@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import logo from '../assets/Logo-removebg-preview.png';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -70,7 +71,7 @@ const SplashScreen = ({ onComplete }) => {
         {/* Ikon */}
         <img
           ref={iconRef}
-          src="/src/assets/logo-removebg-preview.png"
+          src={logo}
           alt="PodoMoro Logo"
           className="w-24 h-24 md:w-32 md:h-32 object-contain scale-125 mb-4 filter drop-shadow-[0_0_15px_rgba(252,211,77,0.3)]"
         />

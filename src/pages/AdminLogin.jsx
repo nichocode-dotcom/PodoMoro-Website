@@ -1,4 +1,5 @@
 import { User, Lock } from 'lucide-react';
+import logo from '../assets/Logo-removebg-preview.png';
 
 export default function AdminLogin() {
   return (
@@ -13,7 +14,7 @@ export default function AdminLogin() {
         
         <div className="flex justify-center mb-8">
           <img 
-            src="/src/assets/Logo-removebg-preview.png" 
+            src={logo} 
             alt="PodoMoro Logo" 
             className="h-16 object-contain hover:scale-105 transition-transform duration-300" 
           />
